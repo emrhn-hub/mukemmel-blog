@@ -1,22 +1,13 @@
 export const getPosts = () => {
   return [
     {
-      title: "1500TL ödül! Sen de yarışmaya katıl!",
-      slug: "yarisma",
-      details: require("./posts/yarisma.md").default,
-      date: "5 Aralık 2019"
+      title: "İlk Yazım",
+      slug: "ilk-yazim",
+      details: require("./posts/ilk-yazim.md").default,
+      img:"https://images.pexels.com/photos/2263679/pexels-photo-2263679.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      tag:"life",
+      date: "Apr 17, 2020"
     },
-    {
-      title: "Örnek yazı",
-      slug: "ornek-yazi",
-      details: require("./posts/ornek-yazi.md").default,
-      date: "3 Aralık 2019"
-    },
-    {
-      title: "Merhaba dünya!",
-      slug: "merhaba",
-      details: require("./posts/merhaba.md").default,
-      date: "1 Aralık 2019"
-    }
+   
   ];
 };
