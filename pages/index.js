@@ -44,7 +44,7 @@ const Home = ({ posts }) => (
                   <a>
                     <div className="w3-container w3-white w3-margin w3-padding-large">
                       <div className="w3-center">
-                        <h3><ReactMarkdown source={post.details}/></h3>
+                        <h3><ReactMarkdown source={post.title}/></h3>
                         <h5><span className="w3-opacity">{post.date}</span></h5>
                       </div>
 
