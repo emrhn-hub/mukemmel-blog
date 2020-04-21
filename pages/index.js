@@ -5,6 +5,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import Nav from "../components/nav"
 import Layout from "../components/master-page";
+import MyForm from "../components/cont"
 
 const Home = ({ posts }) => (
   <Layout>
@@ -14,6 +15,9 @@ const Home = ({ posts }) => (
       </Head>
       <body className="w3-light-grey">
         <div className="w3-bar w3-black w3-hide-small">
+          <Link href="../contacts.html">
+          <a>Contacts</a>
+          </Link>
         </div>
 
         <div className="w3-content" style={{ 'max-width': 1600 + 'px' }}>
@@ -26,7 +30,7 @@ const Home = ({ posts }) => (
           <header className="w3-display-container w3-wide" id="home">
             <img className="w3-image"
               src="https://images.pexels.com/photos/1141853/pexels-photo-1141853.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt="Fashion Blog" style={{ 'width': 1600 + 'px', 'height': 1060 + 'px' }} />
+              alt="" />
             <div className="w3-display-left w3-padding-large">
               <h1 className="w3-jumbo w3-text-white w3-hide-small"><b>LIFE BLOG</b></h1>
               <h5 className="w3-text-white">there is a long way...</h5>
@@ -40,8 +44,8 @@ const Home = ({ posts }) => (
 
               {posts.map(post => (
                 //  < !--Blog entry-- >
-                <Link href={post.slug}>
-                  <a>
+                <div>
+                <div>
                     <div className="w3-container w3-white w3-margin w3-padding-large">
                       <div className="w3-center">
                         <h3><ReactMarkdown source={post.title}/></h3>
@@ -58,10 +62,15 @@ const Home = ({ posts }) => (
                         </div>
                         <span className="w3-tag w3-light-grey w3-small w3-margin-bottom">{post.tag}</span>
                       </div>
+                      <div>
+                        <Link href="">
+                        <a className="read">Devamını Oku...</a>
+                        </Link>
+                      </div>
                     </div>
                     <hr />
-                  </a>
-                </Link>
+                </div>
+              </div>
               ))}
             </div>
 
@@ -71,10 +80,9 @@ const Home = ({ posts }) => (
                   style={{ 'width': 100 + '%', 'max-height': 250 + 'px' }} className="w3-grayscale" />
                 <div className="w3-container w3-black">
                   <h4>Ben Emirhan</h4>
-                  <p>Bu blog sayfasında hayatımdan bir çok kesiti paylaşacağım. Anılarımdan, hayallerimden bol bol
-            da planlarımdan bahsedeceğim. Benim hakkımda daha fazla bilgiye ulaşmak için <u>
-                      buraya</u> tıklaman
-            yeter.</p>
+                  <p>Lise 3. sınıfa gitmekteyim ve ders çalışmaktan geriye kalan çoğu zamanımı yazılım ile geçirmekteyim.
+                    Hayatımdan bazı kesitlerin bulunduğu bloğa hoşgeldin.
+                  </p>
                 </div>
 
               </div>
@@ -96,10 +104,16 @@ const Home = ({ posts }) => (
             </div>
           </div>
         </div>
-
+         <MyForm/>       
         
       </body>
       <style jsx>{`
+      .read{
+        float:right;
+        margin-top: -40px;
+        color: #95a5a6;
+        font-style: italic;
+      }
       a {
         text-decoration: none;
       }
@@ -109,12 +123,11 @@ const Home = ({ posts }) => (
 
 
 );
-
+ 
 Home.getInitialProps = async ({ req }) => {
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
   const res = await fetch("https://emrhnakpnr-nebiyf1wq.now.sh/api/posts");
   const json = await res.json();
   return { posts: json.posts };
 };
-
 export default Home;
