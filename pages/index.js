@@ -15,9 +15,6 @@ const Home = ({ posts }) => (
       </Head>
       <body className="w3-light-grey">
         <div className="w3-bar w3-black w3-hide-small">
-          <Link href="../contacts.html">
-          <a>Contacts</a>
-          </Link>
         </div>
 
         <div className="w3-content" style={{ 'max-width': 1600 + 'px' }}>
@@ -54,7 +51,7 @@ const Home = ({ posts }) => (
 
                       <div className="w3-justify">
                         <img src={post.img} className="w3-padding-16" style={{ 'width': 100 + '%' }} />
-                        <p>&nbsp;&nbsp;&nbsp;{post.details}</p>
+              <p>&nbsp;&nbsp;&nbsp;{post.desc}</p>
                         <p className="w3-clear"></p>
                         <div className="w3-row w3-margin-bottom" style={{ 'display': 'none' }} id="demo1">
 
@@ -63,7 +60,7 @@ const Home = ({ posts }) => (
                         <span className="w3-tag w3-light-grey w3-small w3-margin-bottom">{post.tag}</span>
                       </div>
                       <div>
-                        <Link href="">
+                        <Link href={post.slug}>
                         <a className="read">Devamını Oku...</a>
                         </Link>
                       </div>
