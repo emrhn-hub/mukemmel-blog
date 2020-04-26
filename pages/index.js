@@ -5,19 +5,21 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import Nav from "../components/nav"
 import Layout from "../components/master-page";
-import MyForm from "../components/cont"
+import MyForm from "./cont"
 
 const Home = ({ posts }) => (
   <Layout>
     <div>
+
       <Head>
         <title>Home</title>
       </Head>
-      <body className="w3-light-grey">
-        <div className="w3-bar w3-black w3-hide-small">
-        </div>
 
-        <div className="w3-content" style={{ 'max-width': 1600 + 'px' }}>
+      <div className="w3-light-grey">
+        {/* <div className="w3-bar w3-black w3-hide-small">
+  </div> */}
+
+        <div className="container">
 
           <header className="w3-container w3-center w3-padding-48 w3-white">
             <h1 className="w3-xxxlarge"><b>Emirhan Akpınar</b></h1>
@@ -35,96 +37,102 @@ const Home = ({ posts }) => (
 
             </div>
           </header>
-          <div className="w3-row w3-padding w3-border">
+        </div>
 
-            <div className="w3-col l8 s15">
 
-              {posts.map(post => (
-                //  < !--Blog entry-- >
-                <div>
-                <div>
-                    <div className="w3-container w3-white w3-margin w3-padding-large">
-                      <div className="w3-center">
-                        <h3><ReactMarkdown source={post.title}/></h3>
-                        <h5><span className="w3-opacity">{post.date}</span></h5>
+
+        <div className="w3-row w3-border">
+
+          <Nav />
+
+          <div className="blog">
+            {posts.map(post => (
+              <Link href={post.slug}>
+                <a>
+                  <div>
+                    <div className="blog-container w3-margin">
+                      <div>
+                        <h5><span className="date">{post.date}</span></h5>
                       </div>
 
                       <div className="w3-justify">
-                        <img src={post.img} className="w3-padding-16" style={{ 'width': 100 + '%' }} />
-              <p>&nbsp;&nbsp;&nbsp;{post.desc}</p>
+                        <img src={post.img} className="blog-img w3-padding-14" style={{ 'width': 100 + '%' }} />
+                        <h3 className="title"><ReactMarkdown source={post.title} /></h3>
+                        <p>{post.desc}...</p>
                         <p className="w3-clear"></p>
                         <div className="w3-row w3-margin-bottom" style={{ 'display': 'none' }} id="demo1">
 
-
                         </div>
-                        <span className="w3-tag w3-light-grey w3-small w3-margin-bottom">{post.tag}</span>
                       </div>
-                      <div>
-                        <Link href={post.slug}>
-                        <a className="read">Devamını Oku...</a>
-                        </Link>
-                      </div>
+
                     </div>
                     <hr />
-                </div>
-              </div>
-              ))}
-            </div>
+                  </div>
+                </a>
+              </Link>
+            ))}
 
-            <div className="w3-col l4">
-              <div className="w3-white w3-margin">
-                <img src="https://images.pexels.com/photos/279467/pexels-photo-279467.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-                  style={{ 'width': 100 + '%', 'max-height': 250 + 'px' }} className="w3-grayscale" />
-                <div className="w3-container w3-black">
-                  <h4>Ben Emirhan</h4>
-                  <p>Lise 3. sınıfa gitmekteyim ve ders çalışmaktan geriye kalan çoğu zamanımı yazılım ile geçirmekteyim.
-                    Hayatımdan bazı kesitlerin bulunduğu bloğa hoşgeldin.
-                  </p>
-                </div>
-
-              </div>
-
-
-              <div className="w3-white w3-margin">
-                <div className="w3-container w3-padding w3-black">
-                  <h4>Tags</h4>
-                </div>
-                <div className="w3-container w3-white">
-                  <p>
-                    <span className="w3-tag w3-black w3-margin-bottom">Future</span> <span
-                      className="w3-tag w3-light-grey w3-small w3-margin-bottom">San Francisco</span>
-
-                  </p>
-                </div>
-              </div>
-
-            </div>
           </div>
         </div>
-         <MyForm/>       
-        
-      </body>
+      </div>
+
       <style jsx>{`
+      .blog-img{
+        margin-bottom: 10px;
+        max-height: 350px;
+        height: 100%;
+      }
+      .title{
+        font-weight: 500;
+        font-size: 30px;
+      }
+      .date{
+        margin-top: -1em;
+        float: right;
+        font-family: Exo;
+        opacity: 0.5;
+        font-size: .85em;
+        margin-bottom: 1em;
+      }
+      .blog-container{
+        border-radius: 8px;
+        background-color:White;
+        padding: 15px;
+      }
+      
+      .container{
+        width:100%;
+      }
+      .blog{
+        max-width: 700px;
+        width: 100%;
+        margin: 0 auto;
+      }
       .read{
         float:right;
         margin-top: -40px;
         color: #95a5a6;
         font-style: italic;
       }
-      a {
+      a{
         text-decoration: none;
       }
-    `}</style>
+  
+`}</style>
+
     </div>
   </Layout>
-
-
 );
- 
+
+
+
+
+
 Home.getInitialProps = async ({ req }) => {
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  const res = await fetch("https://emrhnakpnr-nebiyf1wq.now.sh/api/posts");
+  const res = await fetch("https://emrhnakpnr-194syf91a.now.sh/api/posts");
   const json = await res.json();
   return { posts: json.posts };
 };
+
 export default Home;
