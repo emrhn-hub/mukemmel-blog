@@ -122,6 +122,7 @@ const Home = ({ posts }) => (
 
     </div>
   </Layout>
+  
 );
 
 
@@ -130,7 +131,7 @@ const Home = ({ posts }) => (
 
 Home.getInitialProps = async ({ req }) => {
   // TODO: aşağıdaki satırda bulunan adresi kendi sunucu adresinle değiştirmelisin
-  const res = await fetch("https://emrhnakpnr-194syf91a.now.sh/api/posts");
+  const res = await fetch("http://localhost:3000/api/posts");
   const json = await res.json();
   return { posts: json.posts };
 };

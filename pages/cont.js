@@ -58,8 +58,8 @@ export default class MyForm extends React.Component {
                     {status === "SUCCESS" ? <div className="w3-panel w3-green">
                         <h3>Teşekkürler!</h3>
                         <p>En kısa sürede yazmış olduğunuz eposta adresine dönüş yapacağım!</p>
-                    </div> : <div className="row">
-                            <input type="submit" value="SubmitFF" />
+                    </div> : <div className="row bttn">
+                            <input type="submit" value="Submit" />
                         </div>}
                     {status === "ERROR" && <div className="w3-panel w3-red">
                         <h3>Hata!</h3>
@@ -72,7 +72,9 @@ export default class MyForm extends React.Component {
             .ana{
                 background-color: red;
             }
-
+            .bttn{
+               margin-top: 15px; 
+            }
             #subject{
                height:200px
             }
@@ -109,7 +111,7 @@ export default class MyForm extends React.Component {
             
             .container {
               border-radius: 5px;
-              background-color: #f2f2f2;
+              background-color: white;
               padding: 20px;
               max-width: 700px;
               margin: 0 auto;
